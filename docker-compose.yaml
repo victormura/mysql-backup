@@ -1,0 +1,21 @@
+
+version: "2"
+services:
+  mysql-cron-backup:
+    image: victormura/mysql-cron-backup
+    environment:
+      # AWS Configuration
+      ## All fields are mandatory
+      - AWS_BACKUP_BUCKET
+      - AWS_REGION
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      # Database Configuration
+      ## MYSQL_DATABASE - is optional, in case this parameter is not provided,
+      ## it will backup all databases
+      ## MYSQL_PORT - is optional, default 3306
+      - MYSQL_DATABASE
+      - MYSQL_HOST
+      - MYSQL_PORT
+      - MYSQL_USER
+      - MYSQL_PASS
