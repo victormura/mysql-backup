@@ -1,7 +1,7 @@
 FROM debian:sid-slim
 
 # Install tools
-RUN apt-get update && apt-get install -y tzdata gzip openssl netcat
+RUN apt-get update && apt-get install -y tzdata gzip openssl netcat-openbsd
 
 # Install AWSCLI v2
 RUN apt-get update && apt-get install -y curl unzip 
