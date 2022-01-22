@@ -5,7 +5,7 @@ VERSION = $(shell cat VERSION)
 RELEASE_TYPE ?= patch
 
 
-version:
+update_version:
 	@cat VERSION | ( IFS=".-" ; read a b c d && \
       if [ "$(RELEASE_TYPE)" = "patch" ]; then echo "$$a.$$b.$$((c + 1))" > VERSION; \
       elif [ "$(RELEASE_TYPE)" = "minor" ]; then echo "$$a.$$((b + 1)).0" > VERSION; \
@@ -23,6 +23,5 @@ publish: build
 	@docker push $(DOCKER_REPOSITORY)/$(IMAGE_NAME):$(VERSION)
 	@docker push $(DOCKER_REPOSITORY)/$(IMAGE_NAME):latest
 
-release: version publish
-	@git push --tags origin main
-
+release: update_version publish
+	@git push --tags origin master
